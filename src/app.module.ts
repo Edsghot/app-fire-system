@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsuarioModule } from './modulo/usuario/usuario.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -11,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     database: 'nibcqvah_AppFireSystemDb',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true
-})],
+}), UsuarioModule],
   controllers: [],
   providers: [],
 })
