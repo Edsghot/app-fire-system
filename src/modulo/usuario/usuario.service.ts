@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { createUsuarioDto } from 'src/dto/Usuarios/createUserDto.dto';
+import { createUsuarioDto } from 'src/dto/Usuarios/createUsuarioDto.dto';
 import { AdministradorEntity } from 'src/entity/administrador.entity';
 import { UsuarioEntity } from 'src/entity/usuario.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { loginUserDto } from 'src/dto/Usuarios/loginDto.dto';
+import { LoginUsuarioDto } from 'src/dto/Usuarios/loginDto.dto';
 import { createAdministradorDto } from 'src/dto/Administrador/createAdministradorDto.dto';
 
 @Injectable()
@@ -53,7 +53,7 @@ export class UsuarioService {
         }
       }
 
-      async loginUser(user: loginUserDto) {
+      async loginUser(user: LoginUsuarioDto) {
         const { Email, Contrasena } = user;
     
         const existingUser = await this.userRepository.findOne({
@@ -111,25 +111,10 @@ export class UsuarioService {
         }
       }
 
-      async loginUser(user: loginUserDto) {
-        const { Email, Contrasena } = user;
-    
-        const existingUser = await this.userRepository.findOne({
-          where: { Email },
-        });
-    
-        const isMatch = await bcrypt.compare(Contrasena, existingUser.Contrasena);
-    
-        if (isMatch) {
-          return { msg: 'Ingreso correctamente', value: existingUser };
-        } else {
-          return { msg: 'credenciales invalidas' };
-        }
-      }
-      async getAllUser() {
+      async getById( id:number) {
         return {
           msg: 'Lista de Usuarios',
-          value: await this.userRepository.find(),
+          value: await this.userRepository.findOne({where: {IdUsuario: id}}),
         };
       }
 
