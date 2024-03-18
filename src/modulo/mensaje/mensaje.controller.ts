@@ -23,17 +23,17 @@ export class MensajeController {
     }
 
     @Put('update')
-    async actualizarMensaje(@Body() actualizar: ActualizarEstadoDto){
-        return await this.actualizarMensaje(actualizar);
+    async actualizarMensaj(@Body() actualizar: ActualizarEstadoDto){
+        return await this.mensajeService.actualizar(actualizar);
     }
 
     @Delete('delete')
     async eliminarMensaje(@Query('id') id: number) {
-        return await this.eliminarMensaje(id)
+        return await this.mensajeService.eliminarMensaje(id)
     }
 
     @Get('reporte')
     async reporteMensaje(@Query('id') id:number){
-        return await this.reporteMensaje(id);
+        return await this.mensajeService.reporteUsuario(id);
     }
 }
