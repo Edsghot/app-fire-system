@@ -1,20 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createUsuarioDto } from 'src/dto/Usuarios/createUsuarioDto.dto';
-import { AdministradorEntity } from 'src/entity/administrador.entity';
 import { UsuarioEntity } from 'src/entity/usuario.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { LoginUsuarioDto } from 'src/dto/Usuarios/loginDto.dto';
-import { createAdministradorDto } from 'src/dto/Administrador/createAdministradorDto.dto';
 
 @Injectable()
 export class UsuarioService {
     constructor(
         @InjectRepository(UsuarioEntity)
-        private userRepository: Repository<UsuarioEntity>,
-        @InjectRepository(AdministradorEntity)
-        private administradoRepository: Repository<AdministradorEntity>,
+        private userRepository: Repository<UsuarioEntity>
       ) {}
 
       async createUser(user: createUsuarioDto) {
@@ -73,42 +69,6 @@ export class UsuarioService {
           msg: 'Lista de Usuarios',
           value: await this.userRepository.find(),
         };
-      }
-
-      async createAdministrador(user: createAdministradorDto) {
-        var u = new UsuarioEntity();
-    
-        var res = await this.userRepository.findOne({
-          where: { Email: user.Email },
-        });
-    
-        if (res != null) {
-          return {
-            msg: 'Ya existe registrado el correo, pruebe otro',
-            sucess: false,
-          };
-        }
-    
-        const hashPassword = await bcrypt.hash(user.Contrasena, 10);
-
-        u.Email = user.Email;
-        u.Contrasena = hashPassword;
-        u.Nombre = user.Nombre;
-        u.Apellido = user.Apellido;
-        u.Telefono = user.Telefono;
-    
-        try {
-          const newUser = this.userRepository.create(u);
-          return {
-            msg: 'Se creo correctamente',
-            value: this.userRepository.save(newUser),
-          };
-        } catch (e) {
-          return {
-            msg: 'error al registrar el usuario: ' + e,
-            succes: false,
-          };
-        }
       }
 
       async getById( id:number) {

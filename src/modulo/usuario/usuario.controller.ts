@@ -30,4 +30,5 @@ export class UsuarioController {
     return await this.usuarioService.loginUser(loginUsuario);
   }
 
+
 }

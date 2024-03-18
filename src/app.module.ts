@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './modulo/usuario/usuario.module';
+import { MensajeModule } from './modulo/mensaje/mensaje.module';
+import { ConfigModule } from '@nestjs/config';
+import { CloudinaryModule } from './services/cloudinary/cloudinary.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -12,7 +15,7 @@ import { UsuarioModule } from './modulo/usuario/usuario.module';
     database: 'nibcqvah_AppFireSystemDb',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true
-}), UsuarioModule],
+}), ConfigModule.forRoot({isGlobal: true}),UsuarioModule, MensajeModule,CloudinaryModule],
   controllers: [],
   providers: [],
 })

@@ -15,14 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsuarioService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const administrador_entity_1 = require("../../entity/administrador.entity");
 const usuario_entity_1 = require("../../entity/usuario.entity");
 const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
 let UsuarioService = class UsuarioService {
-    constructor(userRepository, administradoRepository) {
+    constructor(userRepository) {
         this.userRepository = userRepository;
-        this.administradoRepository = administradoRepository;
     }
     async createUser(user) {
         var u = new usuario_entity_1.UsuarioEntity();
@@ -74,37 +72,6 @@ let UsuarioService = class UsuarioService {
             value: await this.userRepository.find(),
         };
     }
-    async createAdministrador(user) {
-        var u = new usuario_entity_1.UsuarioEntity();
-        var res = await this.userRepository.findOne({
-            where: { Email: user.Email },
-        });
-        if (res != null) {
-            return {
-                msg: 'Ya existe registrado el correo, pruebe otro',
-                sucess: false,
-            };
-        }
-        const hashPassword = await bcrypt.hash(user.Contrasena, 10);
-        u.Email = user.Email;
-        u.Contrasena = hashPassword;
-        u.Nombre = user.Nombre;
-        u.Apellido = user.Apellido;
-        u.Telefono = user.Telefono;
-        try {
-            const newUser = this.userRepository.create(u);
-            return {
-                msg: 'Se creo correctamente',
-                value: this.userRepository.save(newUser),
-            };
-        }
-        catch (e) {
-            return {
-                msg: 'error al registrar el usuario: ' + e,
-                succes: false,
-            };
-        }
-    }
     async getById(id) {
         return {
             msg: 'Lista de Usuarios',
@@ -116,8 +83,6 @@ exports.UsuarioService = UsuarioService;
 exports.UsuarioService = UsuarioService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(usuario_entity_1.UsuarioEntity)),
-    __param(1, (0, typeorm_1.InjectRepository)(administrador_entity_1.AdministradorEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UsuarioService);
 //# sourceMappingURL=usuario.service.js.map

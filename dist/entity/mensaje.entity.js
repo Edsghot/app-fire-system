@@ -12,6 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MensajeEntity = void 0;
 const typeorm_1 = require("typeorm");
 const usuario_entity_1 = require("./usuario.entity");
+var estado;
+(function (estado) {
+    estado[estado["ACTIVO"] = 0] = "ACTIVO";
+    estado[estado["CONTROLADO"] = 1] = "CONTROLADO";
+    estado[estado["ENCAMINO"] = 2] = "ENCAMINO";
+})(estado || (estado = {}));
 let MensajeEntity = class MensajeEntity {
 };
 exports.MensajeEntity = MensajeEntity;
@@ -31,6 +37,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], MensajeEntity.prototype, "Latitud", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], MensajeEntity.prototype, "Estado", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Date)
+], MensajeEntity.prototype, "Fecha", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

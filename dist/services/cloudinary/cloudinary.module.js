@@ -6,22 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsuarioModule = void 0;
+exports.CloudinaryModule = void 0;
 const common_1 = require("@nestjs/common");
-const usuario_service_1 = require("./usuario.service");
-const usuario_controller_1 = require("./usuario.controller");
-const usuario_entity_1 = require("../../entity/usuario.entity");
-const typeorm_1 = require("@nestjs/typeorm");
-let UsuarioModule = class UsuarioModule {
+const cloudinary_provider_1 = require("./cloudinary.provider");
+const cloudinary_service_1 = require("./cloudinary.service");
+let CloudinaryModule = class CloudinaryModule {
 };
-exports.UsuarioModule = UsuarioModule;
-exports.UsuarioModule = UsuarioModule = __decorate([
+exports.CloudinaryModule = CloudinaryModule;
+exports.CloudinaryModule = CloudinaryModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([usuario_entity_1.UsuarioEntity]),
-        ],
-        providers: [usuario_service_1.UsuarioService],
-        controllers: [usuario_controller_1.UsuarioController]
+        providers: [cloudinary_provider_1.CloudinaryProvider, cloudinary_service_1.CloudinaryService],
+        exports: [cloudinary_provider_1.CloudinaryProvider, cloudinary_service_1.CloudinaryService],
     })
-], UsuarioModule);
-//# sourceMappingURL=usuario.module.js.map
+], CloudinaryModule);
+//# sourceMappingURL=cloudinary.module.js.map

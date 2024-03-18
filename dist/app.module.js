@@ -10,6 +10,9 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const usuario_module_1 = require("./modulo/usuario/usuario.module");
+const mensaje_module_1 = require("./modulo/mensaje/mensaje.module");
+const config_1 = require("@nestjs/config");
+const cloudinary_module_1 = require("./services/cloudinary/cloudinary.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +27,7 @@ exports.AppModule = AppModule = __decorate([
                 database: 'nibcqvah_AppFireSystemDb',
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
                 synchronize: true
-            }), usuario_module_1.UsuarioModule],
+            }), config_1.ConfigModule.forRoot({ isGlobal: true }), usuario_module_1.UsuarioModule, mensaje_module_1.MensajeModule, cloudinary_module_1.CloudinaryModule],
         controllers: [],
         providers: [],
     })

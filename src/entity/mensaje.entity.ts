@@ -1,6 +1,12 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UsuarioEntity } from "./usuario.entity";
 
+enum estado{
+    ACTIVO = 0,
+    CONTROLADO = 1,
+    ENCAMINO = 2
+}
+
 @Entity({ name: 'tMensaje' })
 export class MensajeEntity {
     @PrimaryGeneratedColumn()
@@ -14,6 +20,12 @@ export class MensajeEntity {
 
     @Column()
     Latitud: string;
+
+    @Column()
+    Estado: estado;
+
+    @Column()
+    Fecha: Date;
     
     @Column()
     Longitud: string;   

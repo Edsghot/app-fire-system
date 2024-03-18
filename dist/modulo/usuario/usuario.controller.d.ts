@@ -6,11 +6,11 @@ export declare class UsuarioController {
     constructor(usuarioService: UsuarioService);
     getUsers(): Promise<{
         msg: string;
-        value: import("../../entity/usuario.entity").UsuarioEntity[];
+        value: import("src/entity/usuario.entity").UsuarioEntity[];
     }>;
     getById(idUser: number): Promise<{
         msg: string;
-        value: import("../../entity/usuario.entity").UsuarioEntity;
+        value: import("src/entity/usuario.entity").UsuarioEntity;
     }>;
     createUser(newUser: createUsuarioDto): Promise<{
         msg: string;
@@ -19,7 +19,7 @@ export declare class UsuarioController {
         succes?: undefined;
     } | {
         msg: string;
-        value: Promise<import("../../entity/usuario.entity").UsuarioEntity>;
+        value: Promise<import("src/entity/usuario.entity").UsuarioEntity>;
         sucess?: undefined;
         succes?: undefined;
     } | {
@@ -30,7 +30,7 @@ export declare class UsuarioController {
     }>;
     loginUser(loginUsuario: LoginUsuarioDto): Promise<{
         msg: string;
-        value: import("../../entity/usuario.entity").UsuarioEntity;
+        value: import("src/entity/usuario.entity").UsuarioEntity;
     } | {
         msg: string;
         value?: undefined;
