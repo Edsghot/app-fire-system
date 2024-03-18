@@ -1,3 +1,4 @@
+import { ActualizarEstadoDto } from 'src/dto/Mensajes/actualizarEstado.dto';
 import { createMensajeDto } from 'src/dto/Mensajes/createMensajeDto.dto';
 import { MensajeEntity } from 'src/entity/mensaje.entity';
 import { UsuarioEntity } from 'src/entity/usuario.entity';
@@ -17,6 +18,29 @@ export declare class MensajeService {
     } | {
         msg: string;
         succes: boolean;
+        value?: undefined;
+    }>;
+    actualizar(request: ActualizarEstadoDto): Promise<{
+        msg: string;
+        value?: undefined;
+    } | {
+        msg: string;
+        value: MensajeEntity;
+    }>;
+    eliminarMensaje(id: number): Promise<{
+        msg: string;
+        detalle?: undefined;
+    } | {
+        msg: string;
+        detalle: any;
+    }>;
+    reporteUsuario(id: number): Promise<{
+        msg: string;
+        value: any;
+        detalle?: undefined;
+    } | {
+        msg: string;
+        detalle: any;
         value?: undefined;
     }>;
 }

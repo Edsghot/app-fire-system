@@ -11,7 +11,7 @@ async function bootstrap() {
             optionsSuccessStatus: 204,
         },
     });
-    await app.listen(5023);
+    await app.listen(5022);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

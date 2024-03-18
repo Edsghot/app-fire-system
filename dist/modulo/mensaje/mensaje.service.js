@@ -54,6 +54,42 @@ let MensajeService = class MensajeService {
             };
         }
     }
+    async actualizar(request) {
+        var mensajeEncontrado = await this.mensajeRepository.findOne({ where: { IdMensaje: request.IdMensaje } });
+        if (!mensajeEncontrado) {
+            return { msg: "No se encontro el mensaje, intente de nuevo" };
+        }
+        mensajeEncontrado.Estado = request.Estado;
+        try {
+            await this.mensajeRepository.save(mensajeEncontrado);
+            return { msg: "Se actualizo correctamente", value: mensajeEncontrado };
+        }
+        catch (e) {
+            return { msg: 'error al actualizar el mensaje' };
+        }
+    }
+    async eliminarMensaje(id) {
+        var mensaje = await this.mensajeRepository.findOne({ where: { IdMensaje: id } });
+        if (!mensaje) {
+            return { msg: "Error al eliminar no se encontro el mensaje a eliminar" };
+        }
+        try {
+            await this.mensajeRepository.delete(mensaje);
+            return { msg: "se elimino correctamente" };
+        }
+        catch (e) {
+            return { msg: "error al eliminar", detalle: e };
+        }
+    }
+    async reporteUsuario(id) {
+        try {
+            var res = await this.mensajeRepository.query(`call SP_MensajeUsuarioFechaReciente(${id})`);
+            return { msg: "consulta correcta", value: res[0] };
+        }
+        catch (e) {
+            return { msg: "error al consultar", detalle: e };
+        }
+    }
 };
 exports.MensajeService = MensajeService;
 exports.MensajeService = MensajeService = __decorate([

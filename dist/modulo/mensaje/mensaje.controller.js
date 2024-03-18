@@ -18,14 +18,24 @@ const mensaje_service_1 = require("./mensaje.service");
 const platform_express_1 = require("@nestjs/platform-express");
 const createMensajeDto_dto_1 = require("../../dto/Mensajes/createMensajeDto.dto");
 const cloudinary_service_1 = require("../../services/cloudinary/cloudinary.service");
+const actualizarEstado_dto_1 = require("../../dto/Mensajes/actualizarEstado.dto");
 let MensajeController = class MensajeController {
     constructor(mensajeService, cloudinaryService) {
         this.mensajeService = mensajeService;
         this.cloudinaryService = cloudinaryService;
     }
-    async updateUser(mensaje, file) {
+    async insertar(mensaje, file) {
         var res = this.cloudinaryService.uploadFile(file, "incendios");
         return await this.mensajeService.createMensaje(mensaje, (await res).secure_url);
+    }
+    async actualizarMensaje(actualizar) {
+        return await this.actualizarMensaje(actualizar);
+    }
+    async eliminarMensaje(id) {
+        return await this.eliminarMensaje(id);
+    }
+    async reporteMensaje(id) {
+        return await this.reporteMensaje(id);
     }
 };
 exports.MensajeController = MensajeController;
@@ -37,7 +47,28 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [createMensajeDto_dto_1.createMensajeDto, Object]),
     __metadata("design:returntype", Promise)
-], MensajeController.prototype, "updateUser", null);
+], MensajeController.prototype, "insertar", null);
+__decorate([
+    (0, common_1.Put)('update'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [actualizarEstado_dto_1.ActualizarEstadoDto]),
+    __metadata("design:returntype", Promise)
+], MensajeController.prototype, "actualizarMensaje", null);
+__decorate([
+    (0, common_1.Delete)('delete'),
+    __param(0, (0, common_1.Query)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], MensajeController.prototype, "eliminarMensaje", null);
+__decorate([
+    (0, common_1.Get)('reporte'),
+    __param(0, (0, common_1.Query)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], MensajeController.prototype, "reporteMensaje", null);
 exports.MensajeController = MensajeController = __decorate([
     (0, common_1.Controller)('mensaje'),
     __metadata("design:paramtypes", [mensaje_service_1.MensajeService, cloudinary_service_1.CloudinaryService])

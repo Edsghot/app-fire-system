@@ -70,10 +70,29 @@ export class MensajeService {
 
         async eliminarMensaje(id: number){
 
-            var mensaje = await this.mensajeRepository.findBy({IdMensaje:id});
+            var mensaje = await this.mensajeRepository.findOne({where: {IdMensaje:id}});
 
             if(!mensaje){
-                
+                return {msg:  "Error al eliminar no se encontro el mensaje a eliminar"}
             }
+
+            try{
+
+              await this.mensajeRepository.delete(mensaje);
+              return {msg: "se elimino correctamente"}
+            }catch(e){
+              return {msg: "error al eliminar", detalle: e}
+            }
+
         }
+
+        async reporteUsuario(id: number) {
+         try{
+          var res = await this.mensajeRepository.query(`call SP_MensajeUsuarioFechaReciente(${id})`);
+          return {msg: "consulta correcta", value: res[0]}
+         }catch(e){
+          return {msg: "error al consultar", detalle: e}
+         }
+        }
+        
 }
