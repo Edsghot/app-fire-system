@@ -3,8 +3,8 @@ import { UsuarioEntity } from "./usuario.entity";
 
 enum estado{
     ACTIVO = 0,
-    CONTROLADO = 1,
-    ENCAMINO = 2
+    ENCAMINO = 1,
+    CONTROLADO = 2,
 }
 
 @Entity({ name: 'tMensaje' })
