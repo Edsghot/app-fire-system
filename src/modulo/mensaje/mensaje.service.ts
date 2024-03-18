@@ -43,7 +43,7 @@ export class MensajeService {
               };
             } catch (e) {
               return {
-                msg: 'error al registrar el usuario: ' + e,
+                msg: 'error al registrar el usuario: ' , detailMsg: e,
                 succes: false,
               };
             }
@@ -64,7 +64,7 @@ export class MensajeService {
                 await this.mensajeRepository.save(mensajeEncontrado);
                 return {msg: "Se actualizo correctamente",value: mensajeEncontrado}
             }catch(e){
-                return {msg: 'error al actualizar el mensaje'}
+                return {msg: 'error al actualizar el mensaje', detailMsg: e}
             }
         }
 
@@ -81,7 +81,7 @@ export class MensajeService {
               await this.mensajeRepository.delete(mensaje);
               return {msg: "se elimino correctamente"}
             }catch(e){
-              return {msg: "error al eliminar", detalle: e}
+              return {msg: "error al eliminar", detailMsg: e}
             }
 
         }
