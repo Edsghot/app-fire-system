@@ -94,5 +94,9 @@ export class MensajeService {
           return {msg: "error al consultar", detalle: e}
          }
         }
+
+      async getall(){
+        return await this.mensajeRepository.find();
+     }
         
 }

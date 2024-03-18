@@ -36,4 +36,8 @@ export class MensajeController {
     async reporteMensaje(@Query('id') id:number){
         return await this.mensajeService.reporteUsuario(id);
     }
+    @Get('getall')
+    async getall(){
+        return await this.mensajeService.getall();
+    }
 }
