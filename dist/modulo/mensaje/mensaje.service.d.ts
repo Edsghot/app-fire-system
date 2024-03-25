@@ -10,29 +10,38 @@ export declare class MensajeService {
     createMensaje(mensaje: createMensajeDto, url: string): Promise<{
         msg: string;
         value?: undefined;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
         value: Promise<MensajeEntity>;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
+        detailMsg: any;
         succes: boolean;
         value?: undefined;
     }>;
     actualizar(request: ActualizarEstadoDto): Promise<{
         msg: string;
         value?: undefined;
+        detailMsg?: undefined;
     } | {
         msg: string;
         value: MensajeEntity;
+        detailMsg?: undefined;
+    } | {
+        msg: string;
+        detailMsg: any;
+        value?: undefined;
     }>;
     eliminarMensaje(id: number): Promise<{
         msg: string;
-        detalle?: undefined;
+        detailMsg?: undefined;
     } | {
         msg: string;
-        detalle: any;
+        detailMsg: any;
     }>;
     reporteUsuario(id: number): Promise<{
         msg: string;
@@ -43,4 +52,5 @@ export declare class MensajeService {
         detalle: any;
         value?: undefined;
     }>;
+    getall(): Promise<MensajeEntity[]>;
 }

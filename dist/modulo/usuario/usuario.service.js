@@ -48,7 +48,7 @@ let UsuarioService = class UsuarioService {
         }
         catch (e) {
             return {
-                msg: 'error al registrar el usuario: ' + e,
+                msg: 'error al registrar el usuario: ' + e, detailMsg: e,
                 succes: false,
             };
         }

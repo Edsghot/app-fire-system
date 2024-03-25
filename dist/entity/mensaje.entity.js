@@ -15,8 +15,8 @@ const usuario_entity_1 = require("./usuario.entity");
 var estado;
 (function (estado) {
     estado[estado["ACTIVO"] = 0] = "ACTIVO";
-    estado[estado["CONTROLADO"] = 1] = "CONTROLADO";
-    estado[estado["ENCAMINO"] = 2] = "ENCAMINO";
+    estado[estado["ENCAMINO"] = 1] = "ENCAMINO";
+    estado[estado["CONTROLADO"] = 2] = "CONTROLADO";
 })(estado || (estado = {}));
 let MensajeEntity = class MensajeEntity {
 };

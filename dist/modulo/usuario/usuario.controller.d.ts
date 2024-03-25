@@ -16,14 +16,17 @@ export declare class UsuarioController {
         msg: string;
         sucess: boolean;
         value?: undefined;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
         value: Promise<import("src/entity/usuario.entity").UsuarioEntity>;
         sucess?: undefined;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
+        detailMsg: any;
         succes: boolean;
         sucess?: undefined;
         value?: undefined;

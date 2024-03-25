@@ -28,14 +28,17 @@ let MensajeController = class MensajeController {
         var res = this.cloudinaryService.uploadFile(file, "incendios");
         return await this.mensajeService.createMensaje(mensaje, (await res).secure_url);
     }
-    async actualizarMensaje(actualizar) {
-        return await this.actualizarMensaje(actualizar);
+    async actualizarMensaj(actualizar) {
+        return await this.mensajeService.actualizar(actualizar);
     }
     async eliminarMensaje(id) {
-        return await this.eliminarMensaje(id);
+        return await this.mensajeService.eliminarMensaje(id);
     }
     async reporteMensaje(id) {
-        return await this.reporteMensaje(id);
+        return await this.mensajeService.reporteUsuario(id);
+    }
+    async getall() {
+        return await this.mensajeService.getall();
     }
 };
 exports.MensajeController = MensajeController;
@@ -54,7 +57,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [actualizarEstado_dto_1.ActualizarEstadoDto]),
     __metadata("design:returntype", Promise)
-], MensajeController.prototype, "actualizarMensaje", null);
+], MensajeController.prototype, "actualizarMensaj", null);
 __decorate([
     (0, common_1.Delete)('delete'),
     __param(0, (0, common_1.Query)('id')),
@@ -69,6 +72,12 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], MensajeController.prototype, "reporteMensaje", null);
+__decorate([
+    (0, common_1.Get)('getall'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MensajeController.prototype, "getall", null);
 exports.MensajeController = MensajeController = __decorate([
     (0, common_1.Controller)('mensaje'),
     __metadata("design:paramtypes", [mensaje_service_1.MensajeService, cloudinary_service_1.CloudinaryService])

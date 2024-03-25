@@ -10,17 +10,47 @@ export declare class MensajeController {
     insertar(mensaje: createMensajeDto, file?: Express.Multer.File): Promise<{
         msg: string;
         value?: undefined;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
         value: Promise<import("src/entity/mensaje.entity").MensajeEntity>;
+        detailMsg?: undefined;
         succes?: undefined;
     } | {
         msg: string;
+        detailMsg: any;
         succes: boolean;
         value?: undefined;
     }>;
-    actualizarMensaje(actualizar: ActualizarEstadoDto): any;
-    eliminarMensaje(id: number): any;
-    reporteMensaje(id: number): any;
+    actualizarMensaj(actualizar: ActualizarEstadoDto): Promise<{
+        msg: string;
+        value?: undefined;
+        detailMsg?: undefined;
+    } | {
+        msg: string;
+        value: import("src/entity/mensaje.entity").MensajeEntity;
+        detailMsg?: undefined;
+    } | {
+        msg: string;
+        detailMsg: any;
+        value?: undefined;
+    }>;
+    eliminarMensaje(id: number): Promise<{
+        msg: string;
+        detailMsg?: undefined;
+    } | {
+        msg: string;
+        detailMsg: any;
+    }>;
+    reporteMensaje(id: number): Promise<{
+        msg: string;
+        value: any;
+        detalle?: undefined;
+    } | {
+        msg: string;
+        detalle: any;
+        value?: undefined;
+    }>;
+    getall(): Promise<import("src/entity/mensaje.entity").MensajeEntity[]>;
 }

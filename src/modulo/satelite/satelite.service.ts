@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertDto } from 'src/dto/Satelite/insert.dto';
 import { updateTemperatureDto } from 'src/dto/Satelite/updateTemperature.dto';
-import { tSateliteEntity } from 'src/entity/sateliteEntity';
+import { tSateliteEntity } from 'src/entity/sateliteEntity.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -29,37 +29,6 @@ export class SateliteService {
           return {msg:'error: ',detailMsg: error,sucess: false};
         }
       }
-    
-      async getConflagration(){
-        var val = await this.satelliteRepository.query("CALL ps_Incendios()");
-        return {msg:"lista de incendios",value: val[0]};
-      }
-    
-      async getRecentFires(){
-        try{
-          var val = await this.satelliteRepository.query("CALL SP_IncendioFechaReciente()");
-          return {msg:"lista de incendios recientes",value: val[0],sucess:true};
-        
-        }catch(e){
-          return {msg: "Error al consultar", detail: e,sucess:false}
-        }
-      }
-    
-      async updateTemperature(data: updateTemperatureDto){
-        
-        var satellite = await this.satelliteRepository.findOne({where: {IdSatellite:data.IdSatellite}})
-    
-        if(!satellite){
-          return {value: null,msg:"no se encontro esa latitud"};
-        }
-    
-        satellite.temperature = data.Temperature;
-        satellite.date = new Date();
-    
-        var fin = await this.satelliteRepository.save(satellite);
-    
-        return {value: fin,msg:"se actualizo correctamente"};
-    }
     
       async getById(id: number){
         var satellite = await this.satelliteRepository.findOne({where:{IdSatellite:id}});
