@@ -22,4 +22,9 @@ export class SateliteController {
     async getById(@Param('id') id: number){
         return await this.sateliteService.getById(id);
     }
+
+    @Get('/getall')
+    async getall(){
+        return await this.sateliteService.getall();
+    }
 }

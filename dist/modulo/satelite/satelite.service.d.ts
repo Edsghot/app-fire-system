@@ -23,5 +23,9 @@ export declare class SateliteService {
         msg?: undefined;
     }>;
     getTest(): Promise<number>;
+    getall(): Promise<{
+        msg: string;
+        value: tSateliteEntity[];
+    }>;
     temperaturaAleatorio(): Promise<number>;
 }

@@ -46,6 +46,10 @@ let SateliteService = class SateliteService {
     async getTest() {
         return this.temperaturaAleatorio();
     }
+    async getall() {
+        var res = await this.satelliteRepository.find();
+        return { msg: 'lista de getall', value: res };
+    }
     async temperaturaAleatorio() {
         return Math.random() * (100 - 40) + 40;
     }

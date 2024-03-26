@@ -22,4 +22,8 @@ export declare class SateliteController {
         value: import("src/entity/sateliteEntity.entity").tSateliteEntity;
         msg?: undefined;
     }>;
+    getall(): Promise<{
+        msg: string;
+        value: import("src/entity/sateliteEntity.entity").tSateliteEntity[];
+    }>;
 }

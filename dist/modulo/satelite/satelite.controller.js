@@ -29,6 +29,9 @@ let SateliteController = class SateliteController {
     async getById(id) {
         return await this.sateliteService.getById(id);
     }
+    async getall() {
+        return await this.sateliteService.getall();
+    }
 };
 exports.SateliteController = SateliteController;
 __decorate([
@@ -51,6 +54,12 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], SateliteController.prototype, "getById", null);
+__decorate([
+    (0, common_1.Get)('/getall'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], SateliteController.prototype, "getall", null);
 exports.SateliteController = SateliteController = __decorate([
     (0, common_1.Controller)('tsatelite'),
     __metadata("design:paramtypes", [satelite_service_1.SateliteService])
